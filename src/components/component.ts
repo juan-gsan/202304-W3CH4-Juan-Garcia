@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
 export abstract class Component {
   template!: string;
   element!: Element;
@@ -5,5 +8,13 @@ export abstract class Component {
 
   render(position: InsertPosition = 'beforeend') {
     const parentElement = document.querySelector('#app');
+    if (!parentElement) throw new Error('Invalid selector');
+    parentElement.insertAdjacentHTML(position, this.template);
+    this.element = parentElement.lastElementChild!;
+  }
+
+  cleanHtml() {
+    if (!this.element) return;
+    this.element.outerHTML = '';
   }
 }

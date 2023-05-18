@@ -1,6 +1,6 @@
 import { Series } from '../models/series';
 
-const getMockSeries = (): Series[] => [
+export const getMockSeries = (): Series[] => [
   {
     id: 1,
     name: 'The Sopranos',
